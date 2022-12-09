@@ -12,29 +12,18 @@ const createBooks = async function (req, res) {
   try {
 
     
-    const data = req.body;
-  let  files= req.link   
-
-    if (Object.keys(data) == 0) { return res.status(400).send({ status: false, message: 'plz provide Data' }) }// When body have No data
+  const data = req.body;
+   if (Object.keys(data) == 0) { return res.status(400).send({ status: false, message: 'plz provide Data' }) }// When body have No data
 
     //===========================validate by using validetor folder(by using Regex and somthing)===============================//
 
     if (!isValidName(data.title)) { return res.status(400).send({ status: false, message: 'Title is required' }) }
-
-
     if (!isValidName(data.excerpt)) { return res.status(400).send({ status: false, message: 'Excerpt is required' }) }
-
     if (!isValidName(data.userId)) { return res.status(400).send({ status: false, message: 'User Id is required' }) }
-
     if (!isValidObjectId(data.userId)) { return res.status(400).send({ status: false, message: 'Please provide a valid userId' }) }
-
-
     if (!isValidName(data.ISBN)) { return res.status(400).send({ status: false, message: 'ISBN is required' }) }
-
     if (!validatorISBN(data.ISBN)) { return res.status(400).send({ status: false, message: 'Please provide a valid ISBN' }) }
-
     if (!isValidName(data.category)) { return res.status(400).send({ status: false, message: 'Category is required' }) }
-
     if (!isValidName(data.subcategory)) { return res.status(400).send({ status: false, message: 'Subcategory is required' }) }
 
     if (data.releasedAt) {
@@ -61,10 +50,8 @@ const createBooks = async function (req, res) {
     if (!data.releasedAt) { data.releasedAt = date }
 
 if(data.reviews){
-  if(data.reviews>0){
-    return res.status(400).send({status:false, msg:"at the time of book creation revies should be 0"})
+  return res.status(400).send({status:false, msg:"at the time of book creation reviews should not be there"})
     }
-}
     const createBook = await bookModel.create(data)
 
     return res.status(201).send({ status: true, message: 'Success', data: createBook })

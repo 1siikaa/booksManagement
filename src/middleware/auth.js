@@ -68,7 +68,7 @@ const authorisation = async function (req, res, next) {
             
             let checkId = await userModel.findById(idBody )
             
-            if(!checkId){return res.status(404).send({ status: false, message: 'userId does not exists' }) }
+            if(!checkId){return res.status(404).send({ status: false, message: 'userId does not exist' }) }
             
             let tokenUserId = req.loginUserId
             if (idBody != tokenUserId) { return res.status(403).send({ status: false, msg: 'You are not authorised to perform this activity' }) }
