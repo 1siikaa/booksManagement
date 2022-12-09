@@ -1,62 +1,12 @@
 const express = require('express');
 const router = express.Router();
-const userController=require("../Controller/userController")
-const bookController=require("../Controller/bookController")
-const reviewController = require("../Controller/reviewController")
+const userController=require("../controller/userController")
+const bookController=require("../controller/bookController")
+const reviewController = require("../controller/reviewController")
 const auth = require("../middleware/auth")
 const aws= require("aws-sdk")
 
-aws.config.update({
-      accessKeyId: "AKIAY3L35MCRVFM24Q7U",
-      secretAccessKeyId: "qGG1HE0qRixcW1T1Wg1bv+08tQrIkFVyDFqSft4J",
-      region: "ap-south-1"
-  })
   
-  let uploadFile= async ( file) =>{
-     return new Promise( function(resolve, reject) {
-      
-      let s3= new aws.S3({apiVersion: '2006-03-01'}); 
-  
-      var uploadParams= {
-          ACL: "public-read",
-          Bucket: "classroom-training-bucket", 
-          Key: "abc/" + file.originalname, 
-          Body: file.buffer
-      }
-  
-  
-      s3.upload( uploadParams, function (err, data ){
-          if(err) {
-              return reject({"error": err})
-          }
-          console.log(data)
-          console.log("file uploaded succesfully")
-          return resolve(data.Location)
-      })
-  
-  
-     })
-  }
-  
-  router.post("/write-file-aws", async function(req, res){
-  
-      try{
-          let files= req.files
-          if(files && files.length>0){
-              
-              let uploadedFileURL= await uploadFile( files[0] )
-            req.link=uploadedFileURL
-              res.status(201).send({msg: "file uploaded succesfully", data: uploadedFileURL})
-          }
-          else{
-              res.status(400).send({ msg: "No file found" })
-          }
-          
-      }
-      catch(err){
-          res.status(500).send({msg: err})
-      }
-  })
 
 //============================ user Api ===============================================//
 
@@ -83,7 +33,62 @@ router.post("/books/:bookId/review", reviewController.Reviewcreate);
 
 router.put("/books/:bookId/review/:reviewId", reviewController.updateReview);                         
 
-router.delete("/books/:bookId/review/:reviewId", reviewController.deleteReview);                     
+router.delete("/books/:bookId/review/:reviewId", reviewController.deleteReview); 
+
+/// -------------------- AWS -----------------------------
+aws.config.update({
+    accessKeyId: "AKIAY3L35MCRZNIRGT6N",
+    secretAccessKey: "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",
+    region: "ap-south-1"
+})
+
+let uploadFile= async ( file) =>{
+   return new Promise( function(resolve, reject) {
+    // this function will upload file to aws and return the link
+    let s3= new aws.S3({apiVersion: '2006-03-01'}); // we will be using the s3 service of aws
+
+    var uploadParams= {
+        ACL: "public-read",
+        Bucket: "classroom-training-bucket",  //HERE
+        Key: "abc/" + file.originalname, //HERE 
+        Body: file.buffer
+    }
+
+
+    s3.upload( uploadParams, function (err, data ){
+        if(err) {
+            return reject({"error": err})
+        }
+        console.log(data)
+        console.log("file uploaded succesfully")
+        return resolve(data.Location)
+    })
+
+    
+
+   })
+}
+
+router.post("/write-file-aws", async function(req, res){
+
+    try{
+        let files= req.files
+        if(files && files.length>0){
+            //upload to s3 and get the uploaded link
+            // res.send the link back to frontend/postman
+            let uploadedFileURL= await uploadFile( files[0] )
+            res.status(201).send({msg: "file uploaded succesfully", data: uploadedFileURL})
+        }
+        else{
+            res.status(400).send({ msg: "No file found" })
+        }
+        
+    }
+    catch(err){
+        res.status(500).send({msg: err})
+    }
+    
+})
 
 //===============================router validation(For path is valid or Not)===================================================//
 

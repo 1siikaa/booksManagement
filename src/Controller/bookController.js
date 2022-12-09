@@ -1,7 +1,6 @@
-const userModel = require("../Models/userModel")
-const bookModel = require("../Models/bookModel")
-const reviewModel = require("../Models/reviewModel")
-const aws= require("aws-sdk")
+const userModel = require("../models/userModel")
+const bookModel = require("../models/bookModel")
+const reviewModel = require("../models/reviewModel")
 
 const { isValidName, isValidObjectId, validatorISBN
 } = require("../validator/validator")
@@ -60,9 +59,11 @@ const createBooks = async function (req, res) {
     let date = moment().format("YYYY-MM-DD")
 
     if (!data.releasedAt) { data.releasedAt = date }
-if(files){
 
-  
+if(data.reviews){
+  if(data.reviews>0){
+    return res.status(400).send({status:false, msg:"at the time of book creation revies should be 0"})
+    }
 }
     const createBook = await bookModel.create(data)
 
@@ -98,6 +99,7 @@ const getBook = async function (req, res) {
     if (book.length == 0) {
       return res.status(404).send({ status: false, msg: "Document doesn't exist" });
     }
+     
 
     if (book) {
       return res.status(200).send({ status: true, message: 'Books list', count: book.length, data: book });

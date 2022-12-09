@@ -1,4 +1,4 @@
-const userModel = require("../Models/userModel")
+const userModel = require("../models/userModel")
 const { isValidName, isValidEmail, isValidNumber, isValidPassword, forName,pincodes } = require("../validator/validator")
 const jwt = require('jsonwebtoken')
 

@@ -1,5 +1,5 @@
-const reviewModel = require("../Models/reviewModel")
-const bookModel = require("../Models/bookModel")
+const reviewModel = require("../models/reviewModel")
+const bookModel = require("../models/bookModel")
 const { isValidObjectId, isValidName, forName } = require("../validator/validator")
 const moment = require("moment")
 

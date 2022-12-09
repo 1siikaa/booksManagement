@@ -1,7 +1,7 @@
 const jwt = require("jsonwebtoken")
 
-const bookModel = require("../Models/bookModel")
-const userModel = require("../Models/userModel")
+const bookModel = require("../models/bookModel")
+const userModel = require("../models/userModel")
 const { isValidObjectId } = require("../validator/validator")
 
 //================================================Authentication======================================================//

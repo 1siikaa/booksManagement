@@ -3,14 +3,14 @@ const mongoose = require("mongoose")
 const route = require('../src/route/route');
 const app = express()
 
+
 const multer= require("multer");
-const { AppConfig } = require('aws-sdk');
+
 app.use( multer().any())
 app.use(express.json())
 
 
-mongoose.connect("mongodb+srv://yashsingh:8i1kfhU26wUDrXft@cluster0.e53dru9.mongodb.net/group22Database",
- 	 { useNewUrlParser: true })
+mongoose.connect("mongodb+srv://Vashika:Vanshikaa08@cluster0.on6mcgr.mongodb.net/test")
 .then(() => console.log("MongoDB is connected"))
 .catch((error) => console.log(error))
 
@@ -19,5 +19,5 @@ mongoose.connect("mongodb+srv://yashsingh:8i1kfhU26wUDrXft@cluster0.e53dru9.mong
 app.use('/', route);
 
 
-app.listen(process.env.PORT || 3000, function () {
-	console.log('Express app running on port ' + (process.env.PORT || 3000))})
+app.listen(3000, function () {
+	console.log('Express app running on port ' + 3000)})
