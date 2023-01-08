@@ -1,0 +1,22 @@
+.navbar{
+    display: flex;
+    flex-direction:row;
+    background-color: black;
+    color: red;
+    position:sticky;
+}
+h1{
+    margin-left: 15px;
+    word-spacing:7px;
+}
+
+h3{
+    margin-left:40px;
+    margin-top: 30px;
+    color:white;
+}
+.header{
+    margin-left: 500px;
+    display: flex;
+}
+
