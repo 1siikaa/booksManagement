@@ -1,9 +1,10 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 
-import Header from "./components/Header/Header";
+import Main from "./components/Main/Main";
 import LogIn from "./components/LogIn/LogIn"
-import Body from './components/Body/Body'
+import Authors from './components/Authors/Author'
+import Books from './components/Books/Book'
 
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
@@ -13,11 +14,13 @@ root.render(
   <React.StrictMode>
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Header />}>
-<Route path='/login' element={<LogIn/>}></Route>
+      <Route path="/" element={<Main/>}></Route>
+<Route path='login' element={<LogIn/>}></Route>
+<Route  path='/authors' element={<Authors/>}></Route>
+<Route path='books' element={<Books/>}></Route>
 
           
-        </Route>
+        
        
       </Routes>
     </BrowserRouter>
@@ -25,9 +28,4 @@ root.render(
   </React.StrictMode>
 );
 
-const body = ReactDOM.createRoot(document.getElementById("body"));
-body.render(
-  <>
-  <Body/>
-  </>
-);
+

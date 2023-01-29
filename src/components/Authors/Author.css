@@ -1,23 +1,22 @@
-.form{
-    margin-top: 40px;
-
-    
+h1{
+    margin-left: 60px;
+    font-size:35px ;
+}
+span{
+    font-size: 35px;
+    color: darkred;
+    text-decoration: underline;
 }
 
-.section{
+.container{
     display:flex;
 }
 
-.first{
-    color:red;
-    font-size: 90px;
+.form-design{
+    margin-top: 60px;
+    
 }
-
-h1{
-    margin-left: 60px;
-}
-
-.inp{
+.area{
     margin-top:8px;
     margin-left: 60px;
     padding-left: 30px;
@@ -28,28 +27,17 @@ h1{
     font-size: 15px;
     
 }
-.sub{
+.submit{
     margin-top:15px;
     margin-left: 60px;
     padding-left: 30px;
     padding-right: 30px;
     border: darkred 2px solid;
-    font-size: 30px;
+    font-size: 25px;
     font-weight: 10px;
     color: white;
     background-color: darkred;
 }
-
-.second{
-    
-    text-decoration: underline;
-    font-size: 30px;
-}
-
-.settle{
-    margin-right: 120px;
-}
-
 
 
 

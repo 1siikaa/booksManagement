@@ -13,10 +13,20 @@ h1{
 h3{
     margin-left:40px;
     margin-top: 30px;
-    color:white;
+    
 }
 .header{
-    margin-left: 500px;
+    margin-left: 450px;
     display: flex;
 }
 
+.active {
+    color:red;
+    text-decoration: none;
+}
+
+.change {
+    color:white;
+    text-decoration: none;
+    
+}

@@ -1,5 +1,5 @@
 import React from 'react'
-import library from './welcome.jpg'
+import library from './library.png'
 import './Body.css'
 
 function Body() {
