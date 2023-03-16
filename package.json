@@ -5,12 +5,13 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node src/index.js"
+    "start": "node index.js"
   },
   "author": "\"Vanshika Dubey\"",
   "license": "ISC",
   "dependencies": {
     "aws-sdk": "^2.1268.0",
+    "cors": "^2.8.5",
     "express": "^4.18.2",
     "jsonwebtoken": "^8.5.1",
     "moment": "^2.29.4",
